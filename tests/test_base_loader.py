@@ -1,4 +1,5 @@
 import pytest
+
 from config_manager.base_loader import BaseConfigLoader
 
 
@@ -31,6 +32,7 @@ def test_base_loader_abstract_methods():
     with pytest.raises(TypeError):
         loader = TestLoader()
         loader.save({})
+
 
 if __name__ == "__main__":
     pytest.main()

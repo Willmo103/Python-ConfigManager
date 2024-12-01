@@ -29,11 +29,29 @@ class EnvConfigLoader(BaseConfigLoader):
             load_dotenv()
         return dict(os.environ)
 
-    def save(self, config: Dict[str, Any]) -> None:
+    def save(
+        self, config: Dict[str, Any], file_path: str | None = None
+    ) -> None | NotImplementedError:
         """
         Save configuration data to environment variables.
         :param config: A dict containing configuration data.
+        :param file_path: Path to .env file. default is `None`.
         :return: None
         """
+        if file_path:
+            with open(file_path, "w") as f:
+                for key, value in config.items():
+                    if (
+                        isinstance(value, str)
+                        or isinstance(value, int)
+                        or isinstance(value, float)
+                        or isinstance(value, bool)
+                    ):
+                        f.write(f"{key.upper().replace(' ', '_').strip()}={value}\n")
+                    else:
+                        raise NotImplementedError(
+                            f"Data type {type(value)} not yet supported for saving to .env file."
+                        )
         for key, value in config.items():
-            os.environ[key] = str(value)
+                os.environ[key] = str(value)
+        return

@@ -5,11 +5,11 @@ This module contains the SQLiteConfigLoader class that is used to load and save 
 """
 
 import sqlite3
-from typing import Dict, Any, Optional
+import uuid
+from typing import Any, Dict, Optional
 from uuid import uuid4
 
 from .base_loader import BaseConfigLoader
-import uuid
 
 
 class SQLiteConfigLoader(BaseConfigLoader):

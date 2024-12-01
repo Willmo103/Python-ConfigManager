@@ -37,7 +37,7 @@ class PostgresConfigLoader(BaseConfigLoader):
         self.config_table = config_table
         self.applications_table = applications_table
         self.app_name = app_name
-        self.app_id = app_id or None # set by the Database
+        self.app_id = app_id or None  # set by the Database
 
     def initialize_application(self) -> None:
         """

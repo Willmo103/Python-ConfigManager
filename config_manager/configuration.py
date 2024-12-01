@@ -4,14 +4,15 @@ Module: configuration
 This module contains the Configuration class that is used to manage application configurations.
 """
 
-from typing import Any, Dict, Optional, Mapping
+import uuid
+from typing import Any, Dict, Mapping, Optional
+
 from .base_loader import BaseConfigLoader
 from .env_loader import EnvConfigLoader
 from .json_loader import JSONConfigLoader
-from .yaml_loader import YAMLConfigLoader
 from .postgres_loader import PostgresConfigLoader
 from .sqlite_loader import SQLiteConfigLoader
-import uuid
+from .yaml_loader import YAMLConfigLoader
 
 
 class Configuration:
@@ -23,7 +24,7 @@ class Configuration:
 
     def __repr__(self) -> str:
         items = [
-            f"{key.upper().replace('_', '')}={value}"
+            f"{key.upper().replace(' ', '_').strip()}={value}"
             for key, value in self.config.items()
         ]
         out_s = "\n```toml\n"
@@ -64,6 +65,9 @@ class Configuration:
 
     def __hash__(self) -> int:
         return hash(tuple(sorted(self.config.items())))
+
+    def __getattr__(self, item):
+        return str(self.config[item])
 
     @classmethod
     def initialize(cls, config_type: str, app_name: str, **kwargs) -> "Configuration":
@@ -187,7 +191,5 @@ class Configuration:
         self.config.clear()
         self.loader.save(self.config)
 
-    def copy(self) -> "Configuration":
-        return Configuration(
-            loader=self.loader.__class__(**self.loader.__dict__), app_id=self.app_id
-        )
+    def get(self, key: str, default: Any = None) -> Any:
+        return self.config.get(key, default)

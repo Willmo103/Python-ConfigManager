@@ -36,13 +36,14 @@ class JSONConfigLoader(BaseConfigLoader):
         with open(self.file_path, "r") as file:
             return json.load(file)
 
-    def save(self, config: Dict[str, Any]) -> None:
+    def save(self, config: Dict[str, Any]) -> str | None:
         """
         Save configuration data to JSON file.
         :param config: A dict containing configuration data.
         :return: None
         """
         if not self.file_path:
-            raise ValueError("File path must be provided for JSONConfigLoader.")
+            # raise ValueError("File path must be provided for JSONConfigLoader.")
+            return json.dumps(config)
         with open(self.file_path, "w") as file:
-            json.dump(config, file, indent=4)
+            json.dump(config, file, indent=4)  # noqa
