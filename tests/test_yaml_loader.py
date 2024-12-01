@@ -33,10 +33,10 @@ def test_save_yaml_file(sample_yaml, tmp_path):
     assert data == sample_yaml
 
 
-def test_save_yaml_without_file():
+def test_save_yaml_without_file_returns_yaml(sample_yaml):
     loader = YAMLConfigLoader()
-    with pytest.raises(ValueError):
-        loader.save({"key": "value"})
+    config = loader.save(sample_yaml)
+    assert config == yaml.dump(sample_yaml)
 
 
 if __name__ == "__main__":

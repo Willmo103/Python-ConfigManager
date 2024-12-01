@@ -37,22 +37,33 @@ def test_save_env_overwrites(loader, monkeypatch):
 def test_save_env_with_file(loader, tmp_path):
     env_path = tmp_path / ".env"
     loader.save(
-        {"FILE_KEY": "file_value", "FILE_KEY2": 123, "FILE_KEY3": 3.14, "FILE_KEY4": True},
+        {
+            "FILE_KEY": "file_value",
+            "FILE_KEY2": 123,
+            "FILE_KEY3": 3.14,
+            "FILE_KEY4": True,
+        },
         file_path=str(env_path),
     )
-    assert env_path.read_text() == "FILE_KEY=file_value\nFILE_KEY2=123\nFILE_KEY3=3.14\nFILE_KEY4=True\n"
+    assert (
+        env_path.read_text()
+        == "FILE_KEY=file_value\nFILE_KEY2=123\nFILE_KEY3=3.14\nFILE_KEY4=True\n"
+    )
     assert os.getenv("FILE_KEY") == "file_value"
     assert os.getenv("FILE_KEY2") == "123"
     assert os.getenv("FILE_KEY3") == "3.14"
     assert os.getenv("FILE_KEY4") == "True"
 
+
 def test_saving_list_to_env_throws_not_implemented_error(loader):
     with pytest.raises(NotImplementedError):
-        loader.save({"LIST_KEY": [1, 2, 3]}, file_path='test.env')
+        loader.save({"LIST_KEY": [1, 2, 3]}, file_path="test.env")
+
 
 def test_saving_dict_to_env_throws_not_implemented_error(loader):
     with pytest.raises(NotImplementedError):
-        loader.save({"DICT_KEY": {"key": "value"}}, file_path='test.env')
+        loader.save({"DICT_KEY": {"key": "value"}}, file_path="test.env")
+
 
 if __name__ == "__main__":
     pytest.main()

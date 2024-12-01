@@ -34,10 +34,10 @@ def test_save_json_file(sample_json, tmp_path):
     assert data == sample_json
 
 
-def test_save_json_without_file():
+def test_save_json_without_file_returns_json(sample_json):
     loader = JSONConfigLoader()
-    with pytest.raises(ValueError):
-        loader.save({"key": "value"})
+    config = loader.save(sample_json)
+    assert config == json.dumps(sample_json)
 
 
 if __name__ == "__main__":

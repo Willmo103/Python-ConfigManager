@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include RELEASE_NOTES.md
+recursive-include config_manager *.py

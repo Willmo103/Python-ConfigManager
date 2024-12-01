@@ -53,5 +53,5 @@ class EnvConfigLoader(BaseConfigLoader):
                             f"Data type {type(value)} not yet supported for saving to .env file."
                         )
         for key, value in config.items():
-                os.environ[key] = str(value)
+            os.environ[key] = str(value)
         return

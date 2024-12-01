@@ -39,13 +39,13 @@ class YAMLConfigLoader(BaseConfigLoader):
         with open(self.file_path, "r") as file:
             return yaml.safe_load(file) or {}
 
-    def save(self, config: Dict[str, Any]) -> None:
+    def save(self, config: Dict[str, Any]) -> str | None:
         """
         Save configuration data to YAML file.
         :param config: A dict containing configuration data.
         :return: None
         """
         if not self.file_path:
-            raise ValueError("File path must be provided for YAMLConfigLoader.")
+            return yaml.dump(config, default_flow_style=False)
         with open(self.file_path, "w") as file:
             yaml.dump(config, file, default_flow_style=False)
