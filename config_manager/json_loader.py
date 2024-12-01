@@ -3,14 +3,19 @@ Path: config_manager/json_loader.py
 Description: This module contains the JSONConfigLoader class which is used to load and save
 configuration ddata from/to a JSON file.
 """
+
 import json
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
+
 from .base_loader import BaseConfigLoader
 
 
 class JSONConfigLoader(BaseConfigLoader):
     """Configuration loader for JSON files."""
-    def __init__(self, file_path: Optional[str] = None, json_data: Optional[str] = None):
+
+    def __init__(
+        self, file_path: Optional[str] = None, json_data: Optional[str] = None
+    ):
         """
         Initialize JSONConfigLoader with file path and JSON data.
         :param file_path: Path to JSON file.
@@ -41,4 +46,3 @@ class JSONConfigLoader(BaseConfigLoader):
             raise ValueError("File path must be provided for JSONConfigLoader.")
         with open(self.file_path, "w") as file:
             json.dump(config, file, indent=4)
-

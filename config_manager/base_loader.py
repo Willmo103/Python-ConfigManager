@@ -2,14 +2,16 @@
 Path: config_manager/base_loader.py
 Description: Base class for configuration loaders.
 """
+
 from abc import ABC, abstractmethod
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 class BaseConfigLoader(ABC):
     """
     Base class for configuration loaders
     """
+
     @abstractmethod
     def load(self) -> Dict[str, Any]:
         """

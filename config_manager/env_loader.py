@@ -2,9 +2,12 @@
 Path: config_manager/env_loader.py
 Description: Configuration loader for environment variables.
 """
+
 import os
-from typing import Dict, Any
+from typing import Any, Dict
+
 from dotenv import load_dotenv
+
 from .base_loader import BaseConfigLoader
 
 
@@ -12,6 +15,7 @@ class EnvConfigLoader(BaseConfigLoader):
     """
     Configuration loader for environment variables.
     """
+
     def load(self, file_path: str | None = None) -> Dict[str, Any]:
         """
         Load configuration data from environment variables.
