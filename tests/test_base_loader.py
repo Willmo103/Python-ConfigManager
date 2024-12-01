@@ -1,5 +1,3 @@
-from abc import ABC
-
 import pytest
 from config_manager.base_loader import BaseConfigLoader
 
