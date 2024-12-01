@@ -6,6 +6,8 @@ This module contains the SQLiteConfigLoader class that is used to load and save 
 
 import sqlite3
 from typing import Dict, Any, Optional
+from uuid import uuid4
+
 from .base_loader import BaseConfigLoader
 import uuid
 
@@ -22,7 +24,7 @@ class SQLiteConfigLoader(BaseConfigLoader):
         """
         self.sqlite_location = sqlite_location
         self.app_name = app_name
-        self.app_id = app_id or str(uuid.uuid4())
+        self.app_id = app_id or None
         self.initialize_database()
 
     def initialize_database(self) -> None:
@@ -70,16 +72,20 @@ class SQLiteConfigLoader(BaseConfigLoader):
         Initialize the application in the database.
         :return: None
         """
+        if self.app_id:
+            return
         connection = sqlite3.connect(self.sqlite_location)
         cursor = connection.cursor()
         try:
             cursor.execute(
                 """
                 INSERT OR IGNORE INTO applications (app_id, app_name)
-                VALUES (?, ?);
+                VALUES (?, ?)
+                RETURNING app_id;
             """,
-                (self.app_id, self.app_name),
+                (str(uuid4()), self.app_name),
             )
+            self.app_id = cursor.fetchone()[0]
             connection.commit()
         except Exception as e:
             print("Error initializing application:", e)

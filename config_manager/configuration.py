@@ -107,7 +107,7 @@ class Configuration:
                 postgres_uri=postgres_uri,
                 app_name=app_name,
                 app_id=app_id,
-                postgres_table=postgres_table,
+                config_table=postgres_table,
             )
         elif config_type == "sqlite":
             sqlite_location = kwargs.get("sqlite_location")
@@ -164,7 +164,7 @@ class Configuration:
             postgres_uri=postgres_uri,
             app_name=self.config.get("APP_NAME", "default"),
             app_id=self.app_id,
-            postgres_table=postgres_table,
+            config_table=postgres_table,
         )
         loader.save(self.config)
 
