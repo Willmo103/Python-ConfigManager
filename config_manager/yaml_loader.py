@@ -1,6 +1,7 @@
 """
-Path: config_manager/yaml_loader.py
-Description: This module contains the YAMLConfigLoader class which is used to load and save
+Package: config_manager
+Module: yaml_loader
+This module contains the YAMLConfigLoader class that is used to load and save configuration data from YAML files.
 """
 
 from typing import Any, Dict, Optional

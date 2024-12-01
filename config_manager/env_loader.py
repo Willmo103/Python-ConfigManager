@@ -1,6 +1,7 @@
 """
-Path: config_manager/env_loader.py
-Description: Configuration loader for environment variables.
+Package: config_manager
+Module: env_loader
+This module contains the EnvConfigLoader class that is used to load and save configuration data from environment variables.
 """
 
 import os

@@ -1,7 +1,7 @@
 """
-Path: config_manager/json_loader.py
-Description: This module contains the JSONConfigLoader class which is used to load and save
-configuration ddata from/to a JSON file.
+Package: config_manager
+Module: json_loader
+This module contains the JSONConfigLoader class that is used to load and save configuration data from JSON files.
 """
 
 import json

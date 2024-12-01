@@ -1,6 +1,7 @@
 """
-Path: config_manager/base_loader.py
-Description: Base class for configuration loaders.
+Package: config_manager
+Module: base_loader
+This module contains the BaseConfigLoader class that is used to load and save configuration data.
 """
 
 from abc import ABC, abstractmethod

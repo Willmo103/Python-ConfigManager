@@ -1,7 +1,7 @@
 """
-Path: config_manager/postgres_loader.py
-Description: This module contains the PostgresConfigLoader class which is used to load and save
-configuration data from/to a PostgreSQL database.
+Package: config_manager
+Module: postgres_loader
+This module contains the PostgresConfigLoader class that is used to load and save configuration data from PostgreSQL database.
 """
 
 import uuid

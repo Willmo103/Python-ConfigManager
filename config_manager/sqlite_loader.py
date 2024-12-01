@@ -1,7 +1,7 @@
 """
-Path: config_manager/sqlite_loader.py
-Description: This module contains the SQLiteConfigLoader class which is used to load and save
-configuration data from/to a SQLite database.
+Package: config_manager
+Module: sqlite_loader
+This module contains the SQLiteConfigLoader class that is used to load and save configuration data from SQLite databases.
 """
 
 import sqlite3
