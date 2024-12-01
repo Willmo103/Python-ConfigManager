@@ -1,4 +1,3 @@
-# tests/test_base_loader.py
 from abc import ABC
 
 import pytest
@@ -34,3 +33,6 @@ def test_base_loader_abstract_methods():
     with pytest.raises(TypeError):
         loader = TestLoader()
         loader.save({})
+
+if __name__ == "__main__":
+    pytest.main()
