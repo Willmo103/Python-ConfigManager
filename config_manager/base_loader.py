@@ -7,13 +7,22 @@ from typing import Dict, Any
 
 
 class BaseConfigLoader(ABC):
-    """Base class for configuration loaders."""
+    """
+    Base class for configuration loaders
+    """
     @abstractmethod
     def load(self) -> Dict[str, Any]:
-        """Load configuration data."""
+        """
+        Load configuration data.
+        :return: Dict containing configuration data.
+        """
         pass
 
     @abstractmethod
     def save(self, config: Dict[str, Any]) -> None:
-        """Save configuration data."""
+        """
+        Save configuration data.
+        :param config:
+        :return: None
+        """
         pass
