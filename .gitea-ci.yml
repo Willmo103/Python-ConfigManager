@@ -1,0 +1,37 @@
+image: python:3.9
+
+pipelines:
+  default:
+    - step:
+        name: Install Dependencies
+        caches:
+          - pip
+        script:
+          - pip install --upgrade pip
+          - pip install -r requirements.txt
+          - pip install -r dev.requirements.txt
+    - step:
+        name: Lint with Black and isort
+        script:
+          - black .
+          - isort .
+    - step:
+        name: Run Tests
+        script:
+          - pytest --cov=config_manager tests/
+    - step:
+        name: Build Distributions
+        script:
+          - python setup.py sdist bdist_wheel
+    - step:
+        name: Upload Artifacts
+        script:
+          - mkdir -p artifacts
+          - cp dist/* artifacts/
+        artifacts:
+          paths:
+            - artifacts/
+    - step:
+        name: (Optional) Deploy or Notify
+        script:
+          - echo "Deployment steps or notifications can be added here."
